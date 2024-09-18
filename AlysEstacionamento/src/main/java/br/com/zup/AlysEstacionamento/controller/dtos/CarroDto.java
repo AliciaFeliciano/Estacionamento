@@ -36,8 +36,13 @@ public class CarroDto {
             throw new IllegalArgumentException("Hora de saída não registrada");
         }
 
-        long horas = java.time.Duration.between(horaEntrada, horaSaida).toHours();
-        double tarifaPorHora = 5.00;
-        return horas * tarifaPorHora;
+        long minutos = java.time.Duration.between(horaEntrada, horaSaida).toMinutes();
+
+        if(minutos < 60) {
+            return 3.50;
+        }
+
+        long horas = minutos / 60;
+        return 5.00 + (horas * 3.50);
     }
 }

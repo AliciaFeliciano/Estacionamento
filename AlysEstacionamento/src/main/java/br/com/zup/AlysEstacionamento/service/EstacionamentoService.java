@@ -37,7 +37,7 @@ public class EstacionamentoService {
     }
 
     public List<CarroDto> getESTACIONAMENTO_CARROS() {
-        return new ArrayList<>(ESTACIONAMENTO_CARROS);  // Retorna uma cópia para evitar mutações externas
+        return new ArrayList<>(ESTACIONAMENTO_CARROS);
     }
 
 
@@ -73,7 +73,10 @@ public class EstacionamentoService {
         );
 
         motoDTO.setHoraSaida(horaSaida);
+        ESTACIONAMENTO_MOTOS.remove(motoDTO);
         return motoDTO.calcularTarifa();
+
+
     }
 
     public double calcularTarifaCarro(String placa, LocalDateTime horaSaida) {
@@ -82,6 +85,8 @@ public class EstacionamentoService {
         );
 
         carroDTO.setHoraSaida(horaSaida);
+        ESTACIONAMENTO_CARROS.remove(carroDTO);
         return carroDTO.calcularTarifa();
+
     }
 }

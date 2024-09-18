@@ -36,8 +36,13 @@ public class MotoDto {
             throw new IllegalArgumentException("Hora de saída não registrada");
         }
 
-        long horas = java.time.Duration.between(horaEntrada, horaSaida).toHours();
-        double tarifaPorHora = 2.50;
-        return horas * tarifaPorHora;
+        long minutos = java.time.Duration.between(horaEntrada, horaSaida).toMinutes();
+
+        if(minutos < 60) {
+            return 1.50;
+        }
+
+        long horas = minutos / 60;
+        return 2.50 + (horas * 1.50);
     }
 }
